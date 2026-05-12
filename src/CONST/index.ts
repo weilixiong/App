@@ -9569,6 +9569,9 @@ const CONST = {
         ADD_AGENT_PAGE: {
             AVATAR: 'AddAgentPage-Avatar',
         },
+        EDIT_AGENT_PAGE: {
+            AVATAR: 'EditAgentPage-Avatar',
+        },
         SETTINGS_PROFILE: {
             AVATAR: 'SettingsProfile-Avatar',
             DISPLAY_NAME: 'SettingsProfile-DisplayName',

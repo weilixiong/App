@@ -2801,6 +2801,7 @@ const translations = {
             genericUpdate: 'There was a problem updating this agent',
             updateName: "There was a problem updating this agent's name",
             updatePrompt: "There was a problem updating this agent's instructions",
+            updateAvatar: "There was a problem updating this agent's avatar",
         },
     },
     addAgentPage: {
@@ -2820,6 +2821,9 @@ const translations = {
         deleteAgent: 'Delete agent',
         deleteAgentTitle: 'Delete agent?',
         deleteAgentMessage: 'Are you sure you want to delete this agent? This action cannot be undone.',
+    },
+    editAgentAvatarPage: {
+        title: 'Edit avatar',
     },
     editAgentNamePage: {
         title: 'Agent name',

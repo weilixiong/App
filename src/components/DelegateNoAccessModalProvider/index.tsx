@@ -1,6 +1,6 @@
 // This component is memoized by the React Compiler
 /* eslint-disable react/jsx-no-constructed-context-values */
-import React, {createContext, useContext, useState} from 'react';
+import React, {createContext, useCallback, useContext, useMemo, useState} from 'react';
 import type {PropsWithChildren} from 'react';
 import {View} from 'react-native';
 import ConfirmModal from '@components/ConfirmModal';
@@ -27,22 +27,31 @@ function DelegateNoAccessModalProvider({children}: PropsWithChildren) {
     const isActingAsDelegate = !!account?.delegatedAccess?.delegate;
     const isDelegateAccessRestricted = isActingAsDelegate && AccountUtils.isDelegateOnlySubmitter(account);
 
-    const delegateNoAccessPrompt = (
-        <View style={[styles.renderHTML, styles.flexRow]}>
-            <RenderHTML html={translate('delegate.notAllowedMessage', delegatorEmail)} />
-        </View>
+    const delegateNoAccessPrompt = useMemo(
+        () => (
+            <View style={[styles.renderHTML, styles.flexRow]}>
+                <RenderHTML html={translate('delegate.notAllowedMessage', delegatorEmail)} />
+            </View>
+        ),
+        [delegatorEmail, styles.flexRow, styles.renderHTML, translate],
     );
 
-    const stateValue = {
-        isActingAsDelegate,
-        isDelegateAccessRestricted,
-    };
+    const stateValue = useMemo(
+        () => ({
+            isActingAsDelegate,
+            isDelegateAccessRestricted,
+        }),
+        [isActingAsDelegate, isDelegateAccessRestricted],
+    );
 
-    const showDelegateNoAccessModal = () => setIsModalOpen(true);
+    const showDelegateNoAccessModal = useCallback(() => setIsModalOpen(true), []);
 
-    const actionsValue = {
-        showDelegateNoAccessModal,
-    };
+    const actionsValue = useMemo(
+        () => ({
+            showDelegateNoAccessModal,
+        }),
+        [showDelegateNoAccessModal],
+    );
 
     return (
         <DelegateNoAccessStateContext.Provider value={stateValue}>

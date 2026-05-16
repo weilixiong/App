@@ -297,6 +297,7 @@ function WorkspaceWorkflowsPayerPage({route, policy, personalDetails, isLoadingR
                             initiallyFocusedItemKey={formattedAuthorizedPayer.at(0)?.keyForList}
                             shouldSingleExecuteRowSelect
                             addBottomSafeAreaPadding
+                            shouldHighlightSelectedItem
                             footerContent={
                                 <FormAlertWithSubmitButton
                                     isLoading={isLoading}
